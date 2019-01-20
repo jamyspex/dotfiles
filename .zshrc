@@ -94,10 +94,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# autojump
-#[[ -s /home/james/.autojump/etc/profile.d/autojump.sh ]] && source /home/james/.autojump/etc/profile.d/autojump.sh
-#autoload -U compinit && compinit -u
-
 # fasd
 eval "$(fasd --init auto)"
 
