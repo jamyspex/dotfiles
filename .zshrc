@@ -1,10 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-#export TMUX= tmux new-session -d -s name
-
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/james/.oh-my-zsh
+export ZSH=/home/james/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -62,7 +60,16 @@ ZSH_THEME="dallas"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git)
 
+# Functions {{{
+# =========
+_has() {
+    which $1>/dev/null 2>&1
+}
+# }}}
+
 source $ZSH/oh-my-zsh.sh
+
+export ZSH_CACHE_DIR=~/.zsh/cache
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # User configuration
@@ -94,6 +101,40 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Aliases {{{
+# =======
+# Load our aliases.
+if [ -f ~/.aliases.sh ]; then
+    . ~/.aliases.sh
+fi
+# }}}
+
+# fasd {{{
+# =====
+if _has fasd; then
+    fasd_cache="$ZSH_CACHE_DIR/fasd-init-cache"
+    if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+        fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install >| "$fasd_cache"
+    fi
+    source "$fasd_cache"
+    unset fasd_cache
+fi
+# }}}
+
+# antibody 
+# =======
+if _has antibody; then
+    # If plugins have not been downloaded, then download and static load in future.
+    if [[ ! -e "$HOME/.zsh_plugins.sh" ]]; then
+        # Fetch plugins.
+        antibody bundle < "$HOME/.zshplugins" > "$HOME/.zsh_plugins.sh"
+    fi
+
+    # Load plugins.
+    source "$HOME/.zsh_plugins.sh"
+fi
+# }}}
+
 # fasd
 eval "$(fasd --init auto)"
 
@@ -103,4 +144,4 @@ export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
 #export CPLUS_INCLUDE_PATH="/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH" 
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
-export PATH=/media/linux-ssd/anaconda2/bin:~/.local/bin:$PATH
+export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH

@@ -34,7 +34,7 @@ if [ ! -d ~/.trash ]; then
     mkdir ~/.trash
 fi
 del(){
-	mv "$@" -t ~/.trash
+	gio trash "$@"
 }
 alias rm='echo "rm disabled! Use del for safe delete"'
 
@@ -45,8 +45,8 @@ alias rm='echo "rm disabled! Use del for safe delete"'
 
 # Replace 'ls' with exa if it is available.
 if command -v exa >/dev/null 2>&1; then
-    alias ls="exa --git --color=automatic"
-    alias ll="exa --all --long --git --color=automatic"
-    alias la="exa --all --binary --group --header --long --git --color=automatic"
-    alias l='exa --git --color=automatic'
+    alias ls="exa --git"
+    alias ll="exa --all --long --git"
+    alias la="exa --all --binary --group --header --long --git"
+    alias l="exa --git"
 fi
