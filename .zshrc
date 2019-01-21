@@ -70,6 +70,9 @@ _has() {
 source $ZSH/oh-my-zsh.sh
 
 export ZSH_CACHE_DIR=~/.zsh/cache
+if [ ! -d $ZSH_CACHE_DIR ]; then 
+    mkdir $ZSH_CACHE_DIR
+fi
 
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # User configuration
