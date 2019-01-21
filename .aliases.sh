@@ -39,9 +39,9 @@ del(){
 alias rm='echo "rm disabled! Use del for safe delete"'
 
 # More ls aliases.
-#alias ll='ls -alF'
-#alias la='ls -A'
-#alias l='ls -CF'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 
 # Replace 'ls' with exa if it is available.
 if command -v exa >/dev/null 2>&1; then

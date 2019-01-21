@@ -69,7 +69,7 @@ _has() {
 
 source $ZSH/oh-my-zsh.sh
 
-export ZSH_CACHE_DIR=~/.zsh/cache
+export ZSH_CACHE_DIR=~/.oh-my-zsh/cache
 if [ ! -d $ZSH_CACHE_DIR ]; then 
     mkdir $ZSH_CACHE_DIR
 fi
