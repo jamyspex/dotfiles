@@ -11,7 +11,7 @@ endif
 filetype plugin on
 
 " set leader key
-let mapLeader = "\\"
+let mapLeader = " "
 
 " check if minpac is available
 if exists('*minpac#init')
@@ -64,6 +64,12 @@ if exists('*minpac#init')
         " Generate ctags for projects.
 	call minpac#add('ludovicchabant/vim-gutentags')
 
+	"  Show Git changes in the sign column.
+	call minpac#add('mhinz/vim-signify')
+
+	" Wrapper for Git.
+	call minpac#add('tpope/vim-fugitive', {'type': 'opt'})
+
 	" GitHub extension for `vim-fugitive`.
     	call minpac#add('tpope/vim-rhubarb', {'type': 'opt'})
 
@@ -85,11 +91,6 @@ if exists('*minpac#init')
 
 	" Support for more focus events.
     	call minpac#add('tmux-plugins/vim-tmux-focus-events')
-
-
-
-	" Fuzzy file search.
-	call minpac#add('junegunn/fzf.vim')
 endif
 
 " Timeout Lengths {{{
@@ -126,7 +127,7 @@ let g:ale_linters = {
 \   'ruby': [ 'rubocop' ],
 \   'rust': [ 'cargo', 'rls' ],
 \   'vim': [ 'vint' ],
-\   'haskell': ['stack_build', 'hlint'],
+\   'haskell': ['stack-ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
 \}
 
 " Use stable Rust for RLS.
