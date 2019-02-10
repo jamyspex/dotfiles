@@ -29,8 +29,14 @@ if command -v fasd >/dev/null 2>&1; then
     alias v='fasd -f -e vim'
 fi
 
+if command -v nvim > /dev/null 2>&1; then
+    alias n=nvim
+    alias vi=nvim
+    alias vim=nvim
+fi
+
 # Safe delete
-if [ ! -d ~/.trash ]; then 
+if [ ! -d ~/.trash ]; then
     mkdir ~/.trash
 fi
 del(){

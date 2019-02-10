@@ -25,7 +25,7 @@ _has() {
 source $ZSH/oh-my-zsh.sh
 
 export ZSH_CACHE_DIR=~/.oh-my-zsh/cache
-if [ ! -d $ZSH_CACHE_DIR ]; then 
+if [ ! -d $ZSH_CACHE_DIR ]; then
     mkdir $ZSH_CACHE_DIR
 fi
 
@@ -55,7 +55,7 @@ if _has fasd; then
 fi
 # }}}
 
-# antibody 
+# antibody
 # =======
 if _has antibody; then
     # If plugins have not been downloaded, then download and static load in future.
@@ -72,12 +72,17 @@ fi
 # fasd
 eval "$(fasd --init auto)"
 
-#export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH" 
+#export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 export LD_LIBRARY_PATH="/opt/AMDAPPSDK-3.0/lib:$LD_LIBRARY_PATH"
 export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
-#export CPLUS_INCLUDE_PATH="/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH" 
+#export CPLUS_INCLUDE_PATH="/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
 export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# use ripgrep by default
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
+export FZF_CTRL_T_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
