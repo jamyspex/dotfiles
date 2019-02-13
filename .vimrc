@@ -18,7 +18,7 @@ if exists('*minpac#init')
 	call minpac#init()
 
 	" install NERD commenter
-	call minpac#add('scrooloose/nerdcommenter')
+	" call minpac#add('scrooloose/nerdcommenter')
 
 	" install fzf
 	call minpac#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
@@ -37,6 +37,9 @@ if exists('*minpac#init')
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 	" Add other plugins here.
+
+	" VimCompletesMe autocompletion
+	call minpac#add('ajh17/VimCompletesMe')
 
 	" vim-polyglot syntax highlighting for various file types and languages
 	call minpac#add('sheerun/vim-polyglot')
