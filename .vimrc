@@ -24,6 +24,15 @@ if exists('*minpac#init')
 	call minpac#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
 	call minpac#add('junegunn/fzf.vim')
 
+	" haskell indenter
+	call minpac#add('itchyny/vim-haskell-indent')
+
+	" google code formatter
+	call minpac#add('google/vim-maktaba')
+	call minpac#add('google/vim-codefmt')
+	call minpac#add('google/vim-glaive')
+	call minpac#add('lpenz/vim-codefmt-haskell')
+
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
@@ -68,10 +77,10 @@ if exists('*minpac#init')
 	call minpac#add('mhinz/vim-signify')
 
 	" Wrapper for Git.
-	call minpac#add('tpope/vim-fugitive', {'type': 'opt'})
+	call minpac#add('tpope/vim-fugitive')
 
 	" GitHub extension for `vim-fugitive`.
-    	call minpac#add('tpope/vim-rhubarb', {'type': 'opt'})
+    	call minpac#add('tpope/vim-rhubarb')
 
 	if has("unix")
 		" Helper functions for unix commands (`mkdir`, `mv`, etc.)
@@ -127,7 +136,7 @@ let g:ale_linters = {
 \   'ruby': [ 'rubocop' ],
 \   'rust': [ 'cargo', 'rls' ],
 \   'vim': [ 'vint' ],
-\   'haskell': ['stack-ghc', 'ghc-mod', 'hlint', 'hdevtools', 'hfmt'],
+\   'haskell': ['stack-build', 'hlint', 'hdevtools', 'hfmt'],
 \}
 
 " Use stable Rust for RLS.
