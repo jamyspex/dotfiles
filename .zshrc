@@ -80,9 +80,8 @@ export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
 export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
 export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 # use ripgrep by default
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
 export FZF_CTRL_T_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'

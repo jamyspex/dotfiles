@@ -190,6 +190,9 @@ nnoremap <Leader>r :so $MYVIMRC<CR>
 " clear search results
 nmap <Leader><leader> :noh<CR>
 
+" enable esc to exit terminal mode
+tnoremap <Esc> <C-\><C-n>
+
 " `w!!` will save a file opened without sudo.
 cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 " }}}
