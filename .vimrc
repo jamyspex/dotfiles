@@ -388,6 +388,90 @@ set wildmenu
 let g:tmuxline_powerline_separators = 1
 " }}}
 
+" Undo/Backups {{{
+" ============
+" If a path ends in '//' then the swap file name
+" is built from the entire path. No more issues between
+" projects.
+
+" Change swap directory.
+if isdirectory($HOME . '/.vim/swap') == 0
+    call mkdir($HOME . '/.vim/swap', 'p')
+endif
+set directory=~/.vim/swap//
+
+" Change backup directory.
+if isdirectory($HOME . '/.vim/backup') == 0
+    call mkdir($HOME . '/.vim/backup', 'p')
+endif
+set backupdir=~/.vim/backup//
+
+if exists('+undofile')
+    " Change undo directory.
+    if isdirectory($HOME . '/.vim/undo') == 0
+        call mkdir($HOME . '/.vim/undo', 'p')
+    endif
+    set undodir=~/.vim/undo//
+end
+
+if exists('+shada')
+    " Change SHAred DAta path.
+    set shada+=n~/.nvim/shada
+else
+    " Change viminfo path.
+    set viminfo+=n~/.vim/viminfo
+endif
+
+" I've prefixed these functions with an underscore as I'll
+" never want to run them directly.
+function! _EchoSwapMessage(message)
+    if has("autocmd")
+        augroup EchoSwapMessage
+            autocmd!
+            " Echo the message after entering a file, useful for when
+            " we're entering a file (like on SwapExists) and our echo will be
+            " eaten.
+            autocmd BufWinEnter * echohl WarningMsg
+            exec 'autocmd BufWinEnter * echon "\r'.printf("%-60s", a:message).'"'
+            autocmd BufWinEnter * echohl NONE
+
+            " Remove these auto commands so that they don't run on entering
+            " the next buffer.
+            autocmd BufWinEnter * augroup EchoSwapMessage
+            autocmd BufWinEnter * autocmd!
+            autocmd BufWinEnter * augroup END
+        augroup END
+    endif
+endfunction
+
+function! _HandleSwap(filename)
+    " If the swap file is old, delete. If it is new, recover.
+    if getftime(v:swapname) < getftime(a:filename)
+        let v:swapchoice = 'e'
+        call _EchoSwapMessage("Deleted older swapfile.")
+    else
+        let v:swapchoice = 'r'
+        call _EchoSwapMessage("Detected newer swapfile, recovering.")
+    endif
+endfunc
+
+if has("autocmd")
+    augroup AutoSwap
+        autocmd!
+        autocmd! SwapExists * call _HandleSwap(expand('<afile>:p'))
+    augroup END
+endif
+
+" Enable keeping track of undo history.
+set undofile
+
+" Do not keep track of undo history in temporary files.
+augroup vimrc
+    autocmd!
+    autocmd BufWritePre /tmp/* setlocal noundofile
+augroup END
+" }}}
+
 " Define user commands for updating/cleaning the plugins.
 " Each of them loads minpac, reloads .vimrc to register the
 " information of plugins, then performs the task.
