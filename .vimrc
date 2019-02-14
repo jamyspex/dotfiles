@@ -113,7 +113,7 @@ set timeoutlen=250 ttimeoutlen=0
 " }}}
 
 " Enable Hardtime by default
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 
 " Ale {{{
 " ===
