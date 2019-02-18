@@ -209,6 +209,9 @@ set ruler
 nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>r :so $MYVIMRC<CR>
 
+" copy to system clipboard when in visual mode
+map <C-c> "+y<CR>
+
 " clear search results
 nmap <Leader><leader> :noh<CR>
 
