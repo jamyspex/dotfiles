@@ -7,8 +7,9 @@ if &compatible
   set nocompatible
 endif
 
-" filetype on
 filetype plugin on
+syntax on
+set background=dark
 
 " set leader key
 let mapLeader = " "
@@ -18,7 +19,7 @@ if exists('*minpac#init')
 	call minpac#init()
 
 	" install NERD commenter
-	" call minpac#add('scrooloose/nerdcommenter')
+	call minpac#add('scrooloose/nerdcommenter')
 
 	" install fzf
 	call minpac#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
@@ -37,6 +38,9 @@ if exists('*minpac#init')
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 	" Add other plugins here.
+
+	" Vim colour theme pack
+	call minpac#add('rafi/awesome-vim-colorschemes')
 
 	" VimCompletesMe autocompletion
 	call minpac#add('ajh17/VimCompletesMe')
@@ -105,12 +109,18 @@ if exists('*minpac#init')
     	call minpac#add('tmux-plugins/vim-tmux-focus-events')
 endif
 
+" add awesome vim colour scheme to rtp
+set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
+
 " Timeout Lengths {{{
 " ===============
 " This should make pressing ESC more responsive.
 " Alternative to `set esckeys` as this breaks sequences in INSERT mode that uses ESC.
 set timeoutlen=250 ttimeoutlen=0
 " }}}
+
+set termguicolors
+colorscheme jellybeans " monokai_pro
 
 " Enable Hardtime by default
 let g:hardtime_default_on = 0
