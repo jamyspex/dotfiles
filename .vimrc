@@ -149,7 +149,7 @@ let g:ale_linters = {
 \   'ruby': [ 'rubocop' ],
 \   'rust': [ 'cargo', 'rls' ],
 \   'vim': [ 'vint' ],
-\   'haskell': ['stack-build', 'hlint', 'hdevtools', 'hfmt'],
+\   'haskell': ['stack-build', 'hlint', 'hfmt'],
 \}
 
 " Use stable Rust for RLS.
@@ -158,6 +158,7 @@ let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
+\   'haskell': ['hlint', 'brittany', 'hfmt'],
 \ }
 
 " Set bindings.
@@ -182,6 +183,8 @@ set nofoldenable    " disable folding
 " set line numbers to be relative + abs value of current line
 set number
 set relativenumber
+
+set cursorline
 
 " Reading {{{
 " =======
@@ -269,7 +272,7 @@ set history=1000
 " Lightline {{{
 " =========
 let g:lightline = {}
-let g:lightline.colorscheme = 'hybrid'
+let g:lightline.colorscheme = 'jellybeans' " hybrid'
 
 let g:lightline.active = {
 \   'left': [
