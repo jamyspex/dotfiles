@@ -152,6 +152,9 @@ let g:ale_linters = {
 \   'haskell': ['stack-build', 'hlint', 'hfmt'],
 \}
 
+" keep the error gutter open at all times
+set signcolumn=yes
+
 " Use stable Rust for RLS.
 let g:ale_rust_rls_toolchain = 'stable'
 
