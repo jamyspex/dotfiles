@@ -54,7 +54,7 @@ if [[ ! -n ~/.fonts/SourceCodePro* ]] then
 fi
 
 # tell gnome terminal to use the new font
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro"
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
 
 # Aliases {{{
 # =======
