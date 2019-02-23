@@ -35,6 +35,27 @@ if _has dconf; then
     dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
 fi
 
+if [[ ! -n ~/.fonts/SourceCodePro* ]] then
+    cd /tmp
+    wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
+
+    if [ ! -d "~/.fonts" ] ; then
+        mkdir ~/.fonts
+    fi
+
+    unzip 1.050R-it.zip
+
+    cp source-code-pro-*-it/OTF/*.otf ~/.fonts/
+
+    cd ~/
+
+    # update font cache
+    fc-cache -f -v
+fi
+
+# tell gnome terminal to use the new font
+gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro"
+
 # Aliases {{{
 # =======
 # Load our aliases.
