@@ -35,7 +35,7 @@ if _has dconf; then
     dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
 fi
 
-if [[ ! -n ~/.fonts/SourceCodePro* ]] then
+if [[ ! -n ~/.fonts/SourceCodePro*(#qN) ]] ; then
     cd /tmp
     wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
 
