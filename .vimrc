@@ -148,9 +148,13 @@ let g:ale_linters = {
 \   'python': [ 'flake8' ],
 \   'ruby': [ 'rubocop' ],
 \   'rust': [ 'cargo', 'rls' ],
+\   'java': ['javac'],
 \   'vim': [ 'vint' ],
 \   'haskell': ['stack-build', 'hlint', 'hfmt'],
 \}
+
+" get the classpath env var and use it with ALE
+let g:ale_java_javac_classpath = $CLASSPATH
 
 " keep the error gutter open at all times
 set signcolumn=yes
