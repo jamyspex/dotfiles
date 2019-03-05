@@ -37,7 +37,6 @@ if exists('*minpac#init')
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-	" Add other plugins here.
 
 	" Vim colour theme pack
 	call minpac#add('rafi/awesome-vim-colorschemes')
@@ -166,6 +165,7 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
 \   'haskell': ['hlint', 'brittany', 'hfmt'],
+\   'java': ['google_java_format'],
 \ }
 
 " Set bindings.

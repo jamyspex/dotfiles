@@ -99,12 +99,13 @@ export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
 #export CPLUS_INCLUDE_PATH="/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 
 # Classpath for choco
-export CLASSPATH="/home/james/Documents/Uni/CPM/exercise2-2019/java/choco-4.10.0/choco-solver-4.10.0.jar"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
+export CLASSPATH="/home/james/Documents/Uni/CPM/exercise2-2019/java/choco-4.10.0/choco-solver-4.10.0.jar:/home/james/Documents/Uni/CPM/exercise2-2019/java/"
+export JAVA_HOME="/usr/lib/jvm/default-java/"
 
 export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
 export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ripgrep by default
