@@ -149,8 +149,11 @@ let g:ale_linters = {
 \   'rust': [ 'cargo', 'rls' ],
 \   'java': ['javac'],
 \   'vim': [ 'vint' ],
+\   'fortran': ['gcc'],
 \   'haskell': ['stack-build', 'hlint', 'hfmt'],
 \}
+
+let g:ale_fortran_gcc_use_free_form = 1
 
 " get the classpath env var and use it with ALE
 let g:ale_java_javac_classpath = $CLASSPATH

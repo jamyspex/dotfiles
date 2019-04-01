@@ -7,7 +7,9 @@ export ZSH=/home/james/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="dallas"
+ZSH_THEME=""
+
+
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -28,6 +30,10 @@ export ZSH_CACHE_DIR=~/.oh-my-zsh/cache
 if [ ! -d $ZSH_CACHE_DIR ]; then
     mkdir $ZSH_CACHE_DIR
 fi
+
+
+
+
 
 
 # if we have dconf swap escape and caps lock
@@ -93,7 +99,11 @@ fi
 # fasd
 eval "$(fasd --init auto)"
 
-#export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
+fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
+
+autoload -U promptinit; promptinit
+prompt pure                                                 #export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
+
 export LD_LIBRARY_PATH="/opt/AMDAPPSDK-3.0/lib:$LD_LIBRARY_PATH"
 export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
 #export CPLUS_INCLUDE_PATH="/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
@@ -101,6 +111,10 @@ export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
 # Classpath for choco
 export CLASSPATH="/home/james/Documents/Uni/CPM/exercise2-2019/java/choco-4.10.0/choco-solver-4.10.0.jar:/home/james/Documents/Uni/CPM/exercise2-2019/java/"
 export JAVA_HOME="/usr/lib/jvm/default-java/"
+
+export RF4A_DIR="/home/james/Documents/Uni/MSci-Project/RefactorF4Acc/"
+export PERL5LIB="$RF4A_DIR:$PERL5LIB"
+export PATH="$PATH:$RF4A_DIR/bin"
 
 export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
 export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
