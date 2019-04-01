@@ -120,6 +120,9 @@ export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
 export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
+export PATH="/usr/local/go/bin":$PATH
+export PATH="/home/james/go/bin":$PATH
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ripgrep by default
