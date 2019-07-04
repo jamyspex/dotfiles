@@ -86,7 +86,13 @@ if exists('*minpac#init')
 	call minpac#add('tpope/vim-fugitive')
 
 	" GitHub extension for `vim-fugitive`.
-    	call minpac#add('tpope/vim-rhubarb')
+	call minpac#add('tpope/vim-rhubarb')
+
+	" Razor syntax highlighting
+	call minpac#add('OrangeT/vim-csharp')
+
+	" Omnisharp
+	call minpac#add('OmniSharp/omnisharp-vim')
 
 	if has("unix")
 		" Helper functions for unix commands (`mkdir`, `mv`, etc.)

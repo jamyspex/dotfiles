@@ -32,35 +32,43 @@ if [ ! -d $ZSH_CACHE_DIR ]; then
 fi
 
 
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
-
-
-
-# if we have dconf swap escape and caps lock
-if _has dconf; then
-    dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
-fi
-
-if [[ ! -n ~/.fonts/SourceCodePro*(#qN) ]] ; then
-    cd /tmp
-    wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
-
-    if [ ! -d "~/.fonts" ] ; then
-        mkdir ~/.fonts
+# Check if its WSL linux or not
+if [[ $(uname -r) == *-Microsoft ]]; then
+    # do WSL stuff here
+else
+    # if we have dconf swap escape and caps lock
+    if _has dconf; then
+        dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
     fi
 
-    unzip 1.050R-it.zip
+    if [[ ! -n ~/.fonts/SourceCodePro*(#qN) ]] ; then
+        cd /tmp
+        wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
 
-    cp source-code-pro-*-it/OTF/*.otf ~/.fonts/
+        if [ ! -d "~/.fonts" ] ; then
+            mkdir ~/.fonts
+        fi
 
-    cd ~/
+        unzip 1.050R-it.zip
 
-    # update font cache
-    fc-cache -f -v
+        cp source-code-pro-*-it/OTF/*.otf ~/.fonts/
+
+        cd ~/
+
+        # update font cache
+        fc-cache -f -v
+    fi
+
+    # tell gnome terminal to use the new font
+    gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
 fi
-
-# tell gnome terminal to use the new font
-gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
 
 # Aliases {{{
 # =======
@@ -102,7 +110,8 @@ eval "$(fasd --init auto)"
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 
 autoload -U promptinit; promptinit
-prompt pure                                                 #export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
+prompt pure
+#export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 
 export LD_LIBRARY_PATH="/opt/AMDAPPSDK-3.0/lib:$LD_LIBRARY_PATH"
 export AMDAPPSDKROOT="/opt/AMDAPPSDK-3.0"
@@ -116,15 +125,15 @@ export RF4A_DIR="/home/james/Documents/Uni/MSci-Project/RefactorF4Acc/"
 export PERL5LIB="$RF4A_DIR:$PERL5LIB"
 export PATH="$PATH:$RF4A_DIR/bin"
 
-export PATH=$PATH:/home/james/Documents/Uni/CPM/minizinc/bin
-export PATH=/media/linux-ssd/anaconda3/bin:~/.local/bin:$PATH
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
+export PATH="/home/james/Documents/Uni/CPM/minizinc/bin":$PATH
+export PATH="/media/linux-ssd/anaconda3/bin:~/.local/bin":$PATH
 export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
 export PATH="/usr/local/go/bin":$PATH
 export PATH="/home/james/go/bin":$PATH
+export PATH="/home/james/bin":$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ripgrep by default
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden 3>/dev/null'
 export FZF_CTRL_T_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
