@@ -34,6 +34,19 @@ if exists('*minpac#init')
 	call minpac#add('google/vim-glaive')
 	call minpac#add('lpenz/vim-codefmt-haskell')
 
+	augroup autoformat_settings
+	  autocmd FileType haskell AutoFormatBuffer stylish-haskell
+	  autocmd FileType bzl AutoFormatBuffer buildifier
+ 	  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+ 	  autocmd FileType dart AutoFormatBuffer dartfmt
+ 	  autocmd FileType go AutoFormatBuffer gofmt
+ 	  autocmd FileType gn AutoFormatBuffer gn
+ 	  autocmd FileType html,css,json AutoFormatBuffer js-beautify
+ 	  autocmd FileType java AutoFormatBuffer google-java-format
+ 	  autocmd FileType python AutoFormatBuffer yapf
+ 	  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+        augroup END
+
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
@@ -182,9 +195,9 @@ let g:ale_rust_rls_toolchain = 'stable'
 let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
-\   'haskell': ['hlint', 'brittany', 'hfmt'],
 \   'java': ['google_java_format'],
 \   'javascript': ['eslint'],
+\   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \ }
 
 let g:ale_sign_error = '❌'
