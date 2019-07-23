@@ -130,6 +130,11 @@ colorscheme jellybeans " monokai_pro
 " Enable Hardtime by default
 let g:hardtime_default_on = 0
 
+let g:OmniSharp_server_stdio = 1
+
+let g:OmniSharp_server_path = '/mnt/c/Users/james/omnisharp-win-x64/OmniSharp.exe'
+let g:OmniSharp_translate_cygwin_wsl = 1
+
 " Ale {{{
 " ===
 " Enable completion.
@@ -157,12 +162,16 @@ let g:ale_linters = {
 \   'vim': [ 'vint' ],
 \   'fortran': ['gcc'],
 \   'haskell': ['stack-build', 'hlint', 'hfmt'],
+\   'cs': ['Omnisharp'],
 \}
 
 let g:ale_fortran_gcc_use_free_form = 1
 
 " get the classpath env var and use it with ALE
 let g:ale_java_javac_classpath = $CLASSPATH
+
+" set to use eslint in node_modules/.bin
+let g:ale_javascript_eslint_executable = 'node_modules/.bin/eslint'
 
 " keep the error gutter open at all times
 set signcolumn=yes
@@ -175,9 +184,14 @@ let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
 \   'haskell': ['hlint', 'brittany', 'hfmt'],
 \   'java': ['google_java_format'],
+\   'javascript': ['eslint'],
 \ }
 
+let g:ale_sign_error = '❌'
+let g:ale_sign_warning = '⚠️'
+
 " Set bindings.
+nmap <Leader>fi :OmniSharpFindImplementations
 nmap <Leader>ad <plug>(ale_go_to_definition)
 nmap <Leader>ar <plug>(ale_find_references)
 nmap <Leader>ah <plug>(ale_hover)

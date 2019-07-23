@@ -67,7 +67,9 @@ else
     fi
 
     # tell gnome terminal to use the new font
-    gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
+    if _has gconftool-2; then
+        gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
+    fi
 fi
 
 # Aliases {{{
