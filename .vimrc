@@ -175,6 +175,7 @@ let g:ale_linters = {
 \   'vim': [ 'vint' ],
 \   'fortran': ['gcc'],
 \   'haskell': ['stack-build', 'hlint', 'hfmt'],
+\   'javascript': ['eslint'],
 \   'cs': ['Omnisharp'],
 \}
 
@@ -193,6 +194,7 @@ set signcolumn=yes
 let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_fix_on_save = 1
+
 let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
 \   'java': ['google_java_format'],
@@ -200,8 +202,8 @@ let g:ale_fixers = {
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \ }
 
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
+" let g:ale_sign_error = '❌'
+" let g:ale_sign_warning = '⚠️'
 
 " Set bindings.
 nmap <Leader>fi :OmniSharpFindImplementations
