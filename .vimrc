@@ -184,8 +184,10 @@ let g:ale_fortran_gcc_use_free_form = 1
 " get the classpath env var and use it with ALE
 let g:ale_java_javac_classpath = $CLASSPATH
 
-" set to use eslint in node_modules/.bin
-let g:ale_javascript_eslint_executable = 'node_modules/.bin/eslint'
+let ale_javascript_eslint_options = '--cache'
+
+" set to use eslint_d in node_modules/.bin
+let g:ale_javascript_eslint_executable = 'eslint_d'
 
 " keep the error gutter open at all times
 set signcolumn=yes
