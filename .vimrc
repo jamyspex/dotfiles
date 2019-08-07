@@ -205,9 +205,6 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \ }
 
-" let g:ale_sign_error = '❌'
-" let g:ale_sign_warning = '⚠️'
-
 " Set bindings.
 nmap <Leader>fi :OmniSharpFindImplementations
 nmap <Leader>ad <plug>(ale_go_to_definition)
