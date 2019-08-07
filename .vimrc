@@ -170,7 +170,7 @@ let g:ale_linters = {
 \   'lua': [ 'luac' ],
 \   'python': [ 'flake8' ],
 \   'ruby': [ 'rubocop' ],
-\   'rust': [ 'cargo', 'rls' ],
+\   'rust': [ 'cargo', 'rls', 'rustfmt' ],
 \   'java': ['javac'],
 \   'vim': [ 'vint' ],
 \   'fortran': ['gcc'],
@@ -202,6 +202,7 @@ let g:ale_fixers = {
 \   'java': ['google_java_format'],
 \   'javascript': ['eslint'],
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
+\   'rust': ['rustfmt'],
 \ }
 
 " let g:ale_sign_error = '❌'
