@@ -34,18 +34,18 @@ if exists('*minpac#init')
 	call minpac#add('google/vim-glaive')
 	call minpac#add('lpenz/vim-codefmt-haskell')
 
-	augroup autoformat_settings
-	  autocmd FileType haskell AutoFormatBuffer stylish-haskell
-	  autocmd FileType bzl AutoFormatBuffer buildifier
- 	  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
- 	  autocmd FileType dart AutoFormatBuffer dartfmt
- 	  autocmd FileType go AutoFormatBuffer gofmt
- 	  autocmd FileType gn AutoFormatBuffer gn
- 	  autocmd FileType html,css,json AutoFormatBuffer js-beautify
- 	  autocmd FileType java AutoFormatBuffer google-java-format
- 	  autocmd FileType python AutoFormatBuffer yapf
- 	  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-        augroup END
+	" augroup autoformat_settings
+	"   autocmd FileType haskell AutoFormatBuffer stylish-haskell
+	"   autocmd FileType bzl AutoFormatBuffer buildifier
+ 	"   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+ 	"   autocmd FileType dart AutoFormatBuffer dartfmt
+ 	"   autocmd FileType go AutoFormatBuffer gofmt
+ 	"   autocmd FileType gn AutoFormatBuffer gn
+ 	"   autocmd FileType html,css,json AutoFormatBuffer js-beautify
+ 	"   autocmd FileType java AutoFormatBuffer google-java-format
+ 	"   autocmd FileType python AutoFormatBuffer yapf
+ 	"   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+        " augroup END
 
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -129,6 +129,7 @@ endif
 
 " add awesome vim colour scheme to rtp
 set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
+" set runtimepath+=~/Documents/ale
 
 " Timeout Lengths {{{
 " ===============
@@ -165,7 +166,6 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'c': [ 'cquery' ],
 \   'cpp': [ 'cquery' ],
-\   'css': [ 'csslint' ],
 \   'llvm': [ 'llc' ],
 \   'lua': [ 'luac' ],
 \   'python': [ 'flake8' ],
@@ -178,16 +178,20 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'cs': ['Omnisharp'],
 \}
+" \   'less': [ 'stylelint' ],
 
 let g:ale_fortran_gcc_use_free_form = 1
 
 " get the classpath env var and use it with ALE
 let g:ale_java_javac_classpath = $CLASSPATH
 
-let ale_javascript_eslint_options = '--cache'
-
-" set to use eslint_d in node_modules/.bin
+" eslint exec settings
 let g:ale_javascript_eslint_executable = 'eslint_d'
+let g:ale_javascript_eslint_options = '--cache'
+
+" stylelint exec settings
+let g:ale_less_stylelint_executable = './node_modules/.bin/stylelint_d'
+let g:ale_less_stylelint_options = '--cache'
 
 " keep the error gutter open at all times
 set signcolumn=yes
@@ -204,6 +208,7 @@ let g:ale_fixers = {
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \   'rust': ['rustfmt'],
 \ }
+" \   'less': ['stylelint'],
 
 " Set bindings.
 nmap <Leader>fi :OmniSharpFindImplementations
