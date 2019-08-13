@@ -105,7 +105,7 @@ if exists('*minpac#init')
 	call minpac#add('OrangeT/vim-csharp')
 
 	" Omnisharp
-	call minpac#add('OmniSharp/omnisharp-vim')
+	" call minpac#add('OmniSharp/omnisharp-vim')
 
 	if has("unix")
 		" Helper functions for unix commands (`mkdir`, `mv`, etc.)
@@ -125,6 +125,9 @@ if exists('*minpac#init')
 
 	" Support for more focus events.
     	call minpac#add('tmux-plugins/vim-tmux-focus-events')
+
+	" Racer completions for rust
+	call minpac#add('racer-rust/vim-racer')
 endif
 
 " add awesome vim colour scheme to rtp
@@ -144,10 +147,10 @@ colorscheme jellybeans " monokai_pro
 " Enable Hardtime by default
 let g:hardtime_default_on = 0
 
-let g:OmniSharp_server_stdio = 1
-
-let g:OmniSharp_server_path = '/mnt/c/Users/james/omnisharp-win-x64/OmniSharp.exe'
-let g:OmniSharp_translate_cygwin_wsl = 1
+" let g:OmniSharp_server_stdio = 1
+"
+" let g:OmniSharp_server_path = '/mnt/c/Users/james/omnisharp-win-x64/OmniSharp.exe'
+" let g:OmniSharp_translate_cygwin_wsl = 1
 
 " Ale {{{
 " ===
@@ -211,7 +214,6 @@ let g:ale_fixers = {
 " \   'less': ['stylelint'],
 
 " Set bindings.
-nmap <Leader>fi :OmniSharpFindImplementations
 nmap <Leader>ad <plug>(ale_go_to_definition)
 nmap <Leader>ar <plug>(ale_find_references)
 nmap <Leader>ah <plug>(ale_hover)
