@@ -36,12 +36,21 @@ if command -v nvim > /dev/null 2>&1; then
 fi
 
 # Safe delete
-if [ ! -d ~/.trash ]; then
-    mkdir ~/.trash
+# mac
+if [ -d ~/.Trash ]; then
+    del() {
+	mv "$@" ~/.Trash
+    }
+else # probs on ubuntu
+    if [ ! -d ~/.trash ]; then
+        mkdir ~/.trash
+    fi
+
+    if
+    del(){
+    	gio trash "$@"
+    }
 fi
-del(){
-	gio trash "$@"
-}
 alias rm='echo "rm disabled! Use del for safe delete"'
 
 # More ls aliases.
