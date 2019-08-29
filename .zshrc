@@ -1,15 +1,21 @@
+# zmodload zsh/zprof
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/james/.oh-my-zsh
+
+# work mac set up
+if [[ $(whoami) = 'simon' ]]; then
+    export ZSH=/Users/simon/.oh-my-zsh
+else
+    export ZSH=/home/james/.oh-my-zsh
+fi
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME=""
-
-
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -20,7 +26,7 @@ plugins=(git)
 # Functions {{{
 # =========
 _has() {
-    which $1>/dev/null 2>&1
+    type -v $1>/dev/null 2>&1
 }
 # }}}
 
@@ -82,15 +88,18 @@ fi
 
 # fasd {{{
 # =====
+
 if _has fasd; then
+
     fasd_cache="$ZSH_CACHE_DIR/fasd-init-cache"
     if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
-        fasd --init posix-alias zsh-hook zsh-ccomp zsh-ccomp-install >| "$fasd_cache"
+        fasd --init posix-alias zsh-ccomp zsh-ccomp-install >| "$fasd_cache"
     fi
     source "$fasd_cache"
     unset fasd_cache
 fi
 # }}}
+
 
 # antibody
 # =======
@@ -106,13 +115,12 @@ if _has antibody; then
 fi
 # }}}
 
-# fasd
-eval "$(fasd --init auto)"
 
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 
 autoload -U promptinit; promptinit
 prompt pure
+
 #export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 
 export LD_LIBRARY_PATH="/opt/AMDAPPSDK-3.0/lib:$LD_LIBRARY_PATH"
@@ -143,3 +151,5 @@ export FZF_CTRL_T_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# zprof
