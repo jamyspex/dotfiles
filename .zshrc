@@ -45,38 +45,38 @@ export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PAT
 export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
-# Check if its WSL linux or not
-if [[ $(uname -r) == *-Microsoft ]]; then
-    # do WSL stuff here
-else
-    # if we have dconf swap escape and caps lock
-    if _has dconf; then
-        dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
-    fi
-
-    if [[ ! -n ~/.fonts/SourceCodePro*(#qN) ]] ; then
-        cd /tmp
-        wget https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
-
-        if [ ! -d "~/.fonts" ] ; then
-            mkdir ~/.fonts
-        fi
-
-        unzip 1.050R-it.zip
-
-        cp source-code-pro-*-it/OTF/*.otf ~/.fonts/
-
-        cd ~/
-
-        # update font cache
-        fc-cache -f -v
-    fi
-
-    # tell gnome terminal to use the new font
-    if _has gconftool-2; then
-        gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
-    fi
-fi
+# Install the fonts yourself ya lazy cunt
+# if [[ $(uname -r) == *-Microsoft ]]; then
+#     # do WSL stuff here
+# else
+#     # if we have dconf swap escape and caps lock
+#     if _has dconf; then
+#         dconf write /org/gnome/desktop/input-sources/xkb-options "['caps:swapescape']"
+#     fi
+#
+#     if [[ ! -n ~/.fonts/SourceCodePro*(#qN) ]] ; then
+#         cd /tmp
+#         curl https://github.com/adobe-fonts/source-code-pro/archive/2.030R-ro/1.050R-it.zip
+#
+#         if [ ! -d "~/.fonts" ] ; then
+#             mkdir ~/.fonts
+#         fi
+#
+#         unzip 1.050R-it.zip
+#
+#         cp source-code-pro-*-it/OTF/*.otf ~/.fonts/
+#
+#         cd ~/
+#
+#         # update font cache
+#         fc-cache -f -v
+#     fi
+#
+#     # tell gnome terminal to use the new font
+#     if _has gconftool-2; then
+#         gconftool-2 --set /apps/gnome-terminal/profiles/Default/font --type string "Source Code Pro Semibold Italic"
+#     fi
+# fi
 
 # Aliases {{{
 # =======
