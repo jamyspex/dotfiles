@@ -41,7 +41,6 @@ fi
 export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
 export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
 export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
-export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
 export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 
@@ -133,14 +132,17 @@ export JAVA_HOME="/usr/lib/jvm/default-java/"
 
 export RF4A_DIR="/home/james/Documents/Uni/MSci-Project/RefactorF4Acc/"
 export PERL5LIB="$RF4A_DIR:$PERL5LIB"
-export PATH="$PATH:$RF4A_DIR/bin"
+# export PATH="$PATH:$RF4A_DIR/bin"
 
-export PATH="/home/james/Documents/Uni/CPM/minizinc/bin":$PATH
-export PATH="/media/linux-ssd/anaconda3/bin:~/.local/bin":$PATH
-export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
-export PATH="/usr/local/go/bin":$PATH
-export PATH="/home/james/go/bin":$PATH
-export PATH="/home/james/bin":$PATH
+if [[ $(whoami) = 'james' ]]; then
+    export PATH="/home/james/Documents/Uni/CPM/minizinc/bin":$PATH
+    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+    export PATH="/media/linux-ssd/anaconda3/bin:~/.local/bin":$PATH
+    export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
+    export PATH="/usr/local/go/bin":$PATH
+    export PATH="/home/james/go/bin":$PATH
+    export PATH="/home/james/bin":$PATH
+fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
