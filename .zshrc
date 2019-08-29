@@ -26,7 +26,7 @@ plugins=(git)
 # Functions {{{
 # =========
 _has() {
-    type -v $1>/dev/null 2>&1
+    type $2>/dev/null 2>&1
 }
 # }}}
 

@@ -36,7 +36,7 @@ if command -v nvim > /dev/null 2>&1; then
 fi
 
 _has() {
-    type -v $1>/dev/null 2>&1
+    type $1>/dev/null 2>&1
 }
 
 # Safe delete
