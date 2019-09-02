@@ -35,14 +35,22 @@ if command -v nvim > /dev/null 2>&1; then
     alias vim=nvim
 fi
 
-# Safe delete
-if [ ! -d ~/.trash ]; then
-    mkdir ~/.trash
-fi
-del(){
-	gio trash "$@"
+_has() {
+    type $1>/dev/null 2>&1
 }
-alias rm='echo "rm disabled! Use del for safe delete"'
+
+# Safe delete
+if  _has gio; then
+    if [ ! -d ~/.trash ]; then
+        mkdir ~/.trash
+    fi
+
+    del(){
+    	gio trash "$@"
+    }
+
+    alias rm='echo "rm disabled! Use del for safe delete"'
+fi
 
 # More ls aliases.
 alias ll='ls -alF'
