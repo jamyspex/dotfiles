@@ -168,7 +168,6 @@ let g:ale_linters = {
 \   'cpp': [ 'cquery' ],
 \   'llvm': [ 'llc' ],
 \   'lua': [ 'luac' ],
-\   'python': [ 'flake8' ],
 \   'ruby': [ 'rubocop' ],
 \   'rust': [ 'cargo', 'rls', 'rustfmt' ],
 \   'java': ['javac'],
@@ -204,6 +203,7 @@ let g:ale_fix_on_save = 1
 let g:ale_fixers = {
 \   '*': [ 'remove_trailing_lines', 'trim_whitespace' ],
 \   'java': ['google_java_format'],
+\   'python': ['black'],
 \   'javascript': ['eslint'],
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \   'rust': ['rustfmt'],
