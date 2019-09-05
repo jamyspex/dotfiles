@@ -50,6 +50,8 @@ if exists('*minpac#init')
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+	" rename file in place
+	call minpac#add('danro/rename.vim')
 
 	" Vim colour theme pack
 	call minpac#add('rafi/awesome-vim-colorschemes')
@@ -138,7 +140,8 @@ set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
 " ===============
 " This should make pressing ESC more responsive.
 " Alternative to `set esckeys` as this breaks sequences in INSERT mode that uses ESC.
-set timeoutlen=250 ttimeoutlen=0
+" set timeoutlen=250 ttimeoutlen=0
+set ttimeoutlen=0
 " }}}
 
 set termguicolors
@@ -172,7 +175,7 @@ let g:ale_linters = {
 \   'llvm': [ 'llc' ],
 \   'lua': [ 'luac' ],
 \   'ruby': [ 'rubocop' ],
-\   'rust': [ 'cargo', 'rls', 'rustfmt' ],
+\   'rust': [ 'cargo', 'rls', 'rustfmt', 'rustc' ],
 \   'java': ['javac'],
 \   'vim': [ 'vint' ],
 \   'fortran': ['gcc'],
