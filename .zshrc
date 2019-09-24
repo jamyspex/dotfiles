@@ -147,8 +147,8 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ripgrep by default
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden 3>/dev/null'
-export FZF_CTRL_T_COMMAND='rg --files --no-ignore-vcs --hidden 2>/dev/null'
+export FZF_DEFAULT_COMMAND='rg --files --hidden 3>/dev/null'
+export FZF_CTRL_T_COMMAND='rg --files --hidden 2>/dev/null'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
