@@ -530,6 +530,25 @@ function! _HandleSwap(filename)
     endif
 endfunc
 
+" Jump to tab: <Leader>t
+function TabName(n)
+    let buflist = tabpagebuflist(a:n)
+    let winnr = tabpagewinnr(a:n)
+    return fnamemodify(bufname(buflist[winnr - 1]), ':t')
+endfunction
+
+function! s:jumpToTab(line)
+    let pair = split(a:line, ' ')
+    let cmd = pair[0].'gt'
+    execute 'normal' cmd
+endfunction
+
+nnoremap <silent> <Leader>t :call fzf#run({
+\   'source':  reverse(map(range(1, tabpagenr('$')), 'v:val." "." ".TabName(v:val)')),
+\   'sink':    function('<sid>jumpToTab'),
+\   'down':    tabpagenr('$') + 2
+\ })<CR>
+
 if has("autocmd")
     augroup AutoSwap
         autocmd!
