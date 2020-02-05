@@ -142,6 +142,7 @@ if [[ $(whoami) = 'james' ]]; then
     export PATH="/usr/local/go/bin":$PATH
     export PATH="/home/james/go/bin":$PATH
     export PATH="/home/james/bin":$PATH
+    export PATH="/home/james/.local/bin":$PATH
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
