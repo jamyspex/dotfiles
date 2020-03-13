@@ -58,7 +58,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 # Replace 'ls' with exa if it is available.
-if command -v exa >/dev/null 2>&1; then
+if command -v exa > /dev/null 2>&1; then
     alias ls="exa --git"
     alias ll="exa --all --long --git"
     alias la="exa --all --binary --group --header --long --git"
