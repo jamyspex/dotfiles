@@ -40,16 +40,20 @@ _has() {
 }
 
 # Safe delete
-if  _has gio; then
-    if [ ! -d ~/.trash ]; then
-        mkdir ~/.trash
-    fi
+if [ ! -d ~/.trash ]; then
+    mkdir ~/.trash
+fi
+alias rm='echo "rm disabled! Use del for safe delete"'
 
+if  _has gio; then
     del(){
     	gio trash "$@"
     }
 
-    alias rm='echo "rm disabled! Use del for safe delete"'
+else
+    del(){
+    	mv "$@" ~/.trash
+    }
 fi
 
 # More ls aliases.
