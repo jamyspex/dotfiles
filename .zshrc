@@ -21,7 +21,7 @@ ZSH_THEME=""
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(fasd git)
 
 # Functions {{{
 # =========
@@ -134,16 +134,15 @@ export RF4A_DIR="/home/james/Documents/Uni/MSci-Project/RefactorF4Acc/"
 export PERL5LIB="$RF4A_DIR:$PERL5LIB"
 # export PATH="$PATH:$RF4A_DIR/bin"
 
-if [[ $(whoami) = 'james' ]]; then
-    export PATH="/home/james/Documents/Uni/CPM/minizinc/bin":$PATH
-    export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
-    export PATH="/media/linux-ssd/anaconda3/bin:~/.local/bin":$PATH
-    export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
-    export PATH="/usr/local/go/bin":$PATH
-    export PATH="/home/james/go/bin":$PATH
-    export PATH="/home/james/bin":$PATH
-    export PATH="/home/james/.local/bin":$PATH
-fi
+export PATH="/home/james/Documents/Uni/CPM/minizinc/bin":$PATH
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export PATH="/media/linux-ssd/anaconda3/bin:~/.local/bin":$PATH
+export PATH="/home/james/Android/Sdk/platform-tools/":$PATH
+export PATH="/usr/local/go/bin":$PATH
+export PATH="/home/james/go/bin":$PATH
+export PATH="/home/james/bin":$PATH
+export PATH="/home/james/.local/bin":$PATH
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 

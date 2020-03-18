@@ -10,6 +10,7 @@ endif
 filetype plugin on
 syntax on
 set background=dark
+set clipboard=unnamedplus
 
 " set leader key
 let mapLeader = " "
