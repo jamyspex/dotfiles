@@ -27,6 +27,9 @@ colors:
      cyan:    '#34e2e2'
      white:   '#eeeeec'
 font:
+  bold:
+    family: 'Source Code Pro'
+    style: 'Bold Italic'
   normal:
     family: 'Source Code Pro'
     style: 'Medium Italic'
