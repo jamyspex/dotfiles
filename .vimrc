@@ -30,35 +30,19 @@ if exists('*minpac#init')
 	call minpac#add('itchyny/vim-haskell-indent')
 
 	" google code formatter
-	call minpac#add('google/vim-maktaba')
-	call minpac#add('google/vim-codefmt')
-	call minpac#add('google/vim-glaive')
-	call minpac#add('lpenz/vim-codefmt-haskell')
+	" call minpac#add('google/vim-maktaba')
+	" call minpac#add('google/vim-codefmt')
+	" call minpac#add('google/vim-glaive')
+	" call minpac#add('lpenz/vim-codefmt-haskell')
 
-	" augroup autoformat_settings
-	"   autocmd FileType haskell AutoFormatBuffer stylish-haskell
-	"   autocmd FileType bzl AutoFormatBuffer buildifier
- 	"   autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
- 	"   autocmd FileType dart AutoFormatBuffer dartfmt
- 	"   autocmd FileType go AutoFormatBuffer gofmt
- 	"   autocmd FileType gn AutoFormatBuffer gn
- 	"   autocmd FileType html,css,json AutoFormatBuffer js-beautify
- 	"   autocmd FileType java AutoFormatBuffer google-java-format
- 	"   autocmd FileType python AutoFormatBuffer yapf
- 	"   " Alternative: autocmd FileType python AutoFormatBuffer autopep8
-        " augroup END
+	" install coc
+	call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
 
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-	" rename file in place
-	call minpac#add('danro/rename.vim')
-
 	" Vim colour theme pack
 	call minpac#add('rafi/awesome-vim-colorschemes')
-
-	" VimCompletesMe autocompletion
-	call minpac#add('ajh17/VimCompletesMe')
 
 	" vim-polyglot syntax highlighting for various file types and languages
 	call minpac#add('sheerun/vim-polyglot')
@@ -71,7 +55,7 @@ if exists('*minpac#init')
 
 	" Statusline
     	call minpac#add('itchyny/lightline.vim')
-    	call minpac#add('cocopon/lightline-hybrid.vim')
+    	call minpac#add('josa42/vim-lightline-coc')
 
 	" Switch to absolute line numbers for buffers that are not selected.
     	call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
@@ -84,7 +68,6 @@ if exists('*minpac#init')
 
 	" Autocompletion/linting.
     	call minpac#add('w0rp/ale')
-    	call minpac#add('maximbaz/lightline-ale')
 
 	" Easy navigation between vim splits and tmux panes.
     	call minpac#add('christoomey/vim-tmux-navigator')
@@ -92,11 +75,11 @@ if exists('*minpac#init')
 	" Improvements to netrw.
     	call minpac#add('tpope/vim-vinegar')
 
-        " Generate ctags for projects.
-	call minpac#add('ludovicchabant/vim-gutentags')
-
 	"  Show Git changes in the sign column.
 	call minpac#add('mhinz/vim-signify')
+
+	" Vim obsession
+	call minpac#add('tpope/vim-obsession')
 
 	" Wrapper for Git.
 	call minpac#add('tpope/vim-fugitive')
@@ -104,14 +87,8 @@ if exists('*minpac#init')
 	" GitHub extension for `vim-fugitive`.
 	call minpac#add('tpope/vim-rhubarb')
 
-	" Razor syntax highlighting
-	call minpac#add('OrangeT/vim-csharp')
-
-	" Omnisharp
-	" call minpac#add('OmniSharp/omnisharp-vim')
-
 	if has("unix")
-		" Helper functions for unix commands (`mkdir`, `mv`, etc.)
+ 		" Helper functions for unix commands (`mkdir`, `mv`, etc.)
 		call minpac#add('tpope/vim-eunuch')
 	endif
 
@@ -130,13 +107,12 @@ if exists('*minpac#init')
     	call minpac#add('tmux-plugins/vim-tmux-focus-events')
 
 	" Racer completions for rust
-	call minpac#add('racer-rust/vim-racer')
+	" call minpac#add('racer-rust/vim-racer')
 endif
 
 " add awesome vim colour scheme to rtp
 set runtimepath+=~/.config/nvim
 set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
-" set runtimepath+=~/Documents/ale
 
 " Timeout Lengths {{{
 " ===============
@@ -147,22 +123,17 @@ set ttimeoutlen=0
 " }}}
 
 set termguicolors
-colorscheme jellybeans " monokai_pro
+colorscheme jellybeans
 
 " Enable Hardtime by default
 let g:hardtime_default_on = 0
 
-" let g:OmniSharp_server_stdio = 1
-"
-" let g:OmniSharp_server_path = '/mnt/c/Users/james/omnisharp-win-x64/OmniSharp.exe'
-" let g:OmniSharp_translate_cygwin_wsl = 1
-
 " Ale {{{
 " ===
 " Enable completion.
-let g:ale_completion_enabled = 1
+" let g:ale_completion_enabled = 1
 " Fix completion bug in some versions of Vim.
-set completeopt=menu,menuone,preview,noselect,noinsert
+" set completeopt=menu,menuone,preview,noselect,noinsert
 
 " Set formatting.
 let g:ale_echo_msg_error_str = 'E'
@@ -171,23 +142,21 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 " Set linters and fixers.
 let g:ale_linters_explicit = 1
-let g:ale_linters = {
-\   'c': [ 'cquery' ],
-\   'cpp': [ 'cquery' ],
-\   'llvm': [ 'llc' ],
-\   'lua': [ 'luac' ],
-\   'ruby': [ 'rubocop' ],
-\   'rust': [ 'cargo', 'rls', 'rustfmt', 'rustc' ],
-\   'java': ['javac'],
-\   'vim': [ 'vint' ],
-\   'fortran': ['gcc'],
-\   'haskell': ['stack-build', 'hlint', 'hfmt'],
-\   'javascript': ['eslint'],
-\   'cs': ['Omnisharp'],
-\}
-" \   'less': [ 'stylelint' ],
+" let g:ale_linters = {
+" \   'c': [ 'cquery' ],
+" \   'cpp': [ 'cquery' ],
+" \   'llvm': [ 'llc' ],
+" \   'lua': [ 'luac' ],
+" \   'ruby': [ 'rubocop' ],
+" \   'rust': [ 'clippy', 'cargo', 'rustfmt', 'rustc' ],
+" \   'java': ['javac'],
+" \   'vim': [ 'vint' ],
+" \   'fortran': ['gcc'],
+" \   'haskell': ['stack-build', 'hlint', 'hfmt'],
+" \   'javascript': ['eslint'],
+" \}
 
-let g:ale_fortran_gcc_use_free_form = 1
+" let g:ale_fortran_gcc_use_free_form = 1
 
 " get the classpath env var and use it with ALE
 let g:ale_java_javac_classpath = $CLASSPATH
@@ -204,7 +173,7 @@ let g:ale_less_stylelint_options = '--cache'
 set signcolumn=yes
 
 " Use stable Rust for RLS.
-let g:ale_rust_rls_toolchain = 'stable'
+" let g:ale_rust_rls_toolchain = 'stable'
 
 let g:ale_fix_on_save = 1
 
@@ -219,20 +188,20 @@ let g:ale_fixers = {
 " \   'less': ['stylelint'],
 
 " Set bindings.
-nmap <Leader>ad <plug>(ale_go_to_definition)
-nmap <Leader>ar <plug>(ale_find_references)
-nmap <Leader>ah <plug>(ale_hover)
-nmap <Leader>af <plug>(ale_fix)
-nmap <Leader>at <plug>(ale_detail)
-nmap <Leader>an <plug>(ale_next_wrap)
-nmap <Leader>ap <plug>(ale_previous_wrap)
-
-" Set quicker bindings.
-nmap <C-n> <plug>(ale_next_wrap)
-nmap <C-@> <plug>(ale_previous_wrap)
-nmap <C-q> <plug>(ale_go_to_definition)
-nmap <C-s> <plug>(ale_fix)
-nmap <C-x> <plug>(ale_find_references)
+" nmap <Leader>ad <plug>(ale_go_to_definition)
+" nmap <Leader>ar <plug>(ale_find_references)
+" nmap <Leader>ah <plug>(ale_hover)
+" nmap <Leader>af <plug>(ale_fix)
+" nmap <Leader>at <plug>(ale_detail)
+" nmap <Leader>an <plug>(ale_next_wrap)
+" nmap <Leader>ap <plug>(ale_previous_wrap)
+"
+" " Set quicker bindings.
+" nmap <C-n> <plug>(ale_next_wrap)
+" nmap <C-@> <plug>(ale_previous_wrap)
+" nmap <C-q> <plug>(ale_go_to_definition)
+" nmap <C-s> <plug>(ale_fix)
+" nmap <C-x> <plug>(ale_find_references)
 " }}}
 
 set nofoldenable    " disable folding
@@ -266,7 +235,6 @@ set ruler
 
 " Mappings {{{
 " ========
-nnoremap <Leader>t :tabnew<CR>
 nnoremap <Leader>r :so $MYVIMRC<CR>
 
 " copy to system clipboard when in visual mode
@@ -329,7 +297,7 @@ set history=1000
 " Lightline {{{
 " =========
 let g:lightline = {}
-let g:lightline.colorscheme = 'jellybeans' " hybrid'
+let g:lightline.colorscheme = 'jellybeans'
 
 let g:lightline.active = {
 \   'left': [
@@ -337,36 +305,36 @@ let g:lightline.active = {
 \       [ 'paste', 'spell', 'gitbranch', 'readonly', 'filename' ]
 \   ],
 \   'right': [
-\       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-\       [ 'gutentags' ],
-\       [ 'obsession', 'fileformat', 'fileencoding', 'filetype', 'charvaluehex', 'lineinfo',
-\         'percent' ]
+\       [ 'coc_errors', 'coc_warnings', 'coc_ok',  'coc_status' ],
+\       [ 'fileformat', 'fileencoding', 'filetype', 'lineinfo', 'percent' ]
 \   ]
 \ }
 
 let g:lightline.component_expand = {
-\   'linter_checking': 'lightline#ale#checking',
-\   'linter_warnings': 'lightline#ale#warnings',
-\   'linter_errors': 'lightline#ale#errors',
-\   'linter_ok': 'lightline#ale#ok',
+\   'coc_warnings'  	: 'lightline#coc#warnings',
+\   'coc_errors' 	: 'lightline#coc#errors',
+\   'coc_status' 	: 'lightline#coc#status',
+\   'coc_ok' 		: 'lightline#coc#ok',
 \ }
 
+" Set color to the components:
 let g:lightline.component_type = {
-\   'linter_checking': 'left',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error',
-\   'linter_ok': 'left',
+\   'coc_warnings' 	: 'warning',
+\   'coc_errors' 	: 'error',
+\   'coc_ok' 		: 'right',
+\   'coc_status' 	: 'right'
 \ }
 
 let g:lightline.component_function = {
-\   'gitbranch': 'fugitive#head',
-\   'gutentags': 'LightlineGutentags',
-\   'obsession': 'ObsessionStatus',
-\   'readonly': 'LightlineReadonly',
-\   'fileformat': 'LightlineFileformat',
-\   'filetype': 'LightlineFiletype',
-\   'filename': 'LightlineFilename'
+\   'gitbranch' 	: 'fugitive#head',
+\   'obsession' 	: 'ObsessionStatus',
+\   'readonly' 		: 'LightlineReadonly',
+\   'fileformat' 	: 'LightlineFileformat',
+\   'filetype' 		: 'LightlineFiletype',
+\   'filename' 		: 'LightlineFilename',
 \ }
+
+autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
 function! LightlineFilename()
     " Get the full path of the current file.
@@ -417,9 +385,6 @@ function! LightlineFileformat()
 endfunction
 function! LightlineFiletype()
     return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-function! LightlineGutentags()
-    return gutentags#statusline('')
 endfunction
 function! LightlineReadonly()
     return &readonly && &filetype !=# 'help' ? 'RO' : ''
@@ -531,13 +496,6 @@ function! _HandleSwap(filename)
     endif
 endfunc
 
-" Jump to tab: <Leader>t
-function TabName(n)
-    let buflist = tabpagebuflist(a:n)
-    let winnr = tabpagewinnr(a:n)
-    return fnamemodify(bufname(buflist[winnr - 1]), ':t')
-endfunction
-
 function! s:jumpToTab(line)
     let pair = split(a:line, ' ')
     let cmd = pair[0].'gt'
@@ -573,3 +531,140 @@ augroup END
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update('', {'do': 'call minpac#status()'})
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
 command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+
+" let g:coc_node_args = ['--nolazy', '--inspect-brk=6045']
+
+" TextEdit might fail if hidden is not set.
+set hidden
+
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
+" Give more space for displaying messages.
+set cmdheight=1
+
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
+
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if exists('*complete_info')
+  inoremap <expr><cr> complete_info()["selected"] != "-1" ? "<C-y>" : "<CR>"
+else
+  imap <expr><cr> pumvisible() ? "<C-y>" : "<CR>"
+endif
+
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Introduce function text object
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap if <Plug>(coc-funcobj-i)
+omap af <Plug>(coc-funcobj-a)
+
+" Use <TAB> for selections ranges.
+" NOTE: Requires 'textDocument/selectionRange' support from the language server.
+" coc-tsserver, coc-python are the examples of servers that support it.
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Mappings using CoCList:
+" Show all diagnostics.
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
