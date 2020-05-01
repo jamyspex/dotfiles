@@ -130,44 +130,6 @@ let g:hardtime_default_on = 0
 
 " Ale {{{
 " ===
-" Enable completion.
-" let g:ale_completion_enabled = 1
-" Fix completion bug in some versions of Vim.
-" set completeopt=menu,menuone,preview,noselect,noinsert
-
-" Set formatting.
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-" Set linters and fixers.
-let g:ale_linters_explicit = 1
-" let g:ale_linters = {
-" \   'c': [ 'cquery' ],
-" \   'cpp': [ 'cquery' ],
-" \   'llvm': [ 'llc' ],
-" \   'lua': [ 'luac' ],
-" \   'ruby': [ 'rubocop' ],
-" \   'rust': [ 'clippy', 'cargo', 'rustfmt', 'rustc' ],
-" \   'java': ['javac'],
-" \   'vim': [ 'vint' ],
-" \   'fortran': ['gcc'],
-" \   'haskell': ['stack-build', 'hlint', 'hfmt'],
-" \   'javascript': ['eslint'],
-" \}
-
-" let g:ale_fortran_gcc_use_free_form = 1
-
-" get the classpath env var and use it with ALE
-let g:ale_java_javac_classpath = $CLASSPATH
-
-" eslint exec settings
-let g:ale_javascript_eslint_executable = 'eslint_d'
-let g:ale_javascript_eslint_options = '--cache'
-
-" stylelint exec settings
-let g:ale_less_stylelint_executable = './node_modules/.bin/stylelint_d'
-let g:ale_less_stylelint_options = '--cache'
 
 " keep the error gutter open at all times
 set signcolumn=yes
@@ -185,24 +147,6 @@ let g:ale_fixers = {
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \   'rust': ['rustfmt'],
 \ }
-" \   'less': ['stylelint'],
-
-" Set bindings.
-" nmap <Leader>ad <plug>(ale_go_to_definition)
-" nmap <Leader>ar <plug>(ale_find_references)
-" nmap <Leader>ah <plug>(ale_hover)
-" nmap <Leader>af <plug>(ale_fix)
-" nmap <Leader>at <plug>(ale_detail)
-" nmap <Leader>an <plug>(ale_next_wrap)
-" nmap <Leader>ap <plug>(ale_previous_wrap)
-"
-" " Set quicker bindings.
-" nmap <C-n> <plug>(ale_next_wrap)
-" nmap <C-@> <plug>(ale_previous_wrap)
-" nmap <C-q> <plug>(ale_go_to_definition)
-" nmap <C-s> <plug>(ale_fix)
-" nmap <C-x> <plug>(ale_find_references)
-" }}}
 
 set nofoldenable    " disable folding
 
@@ -305,7 +249,8 @@ let g:lightline.active = {
 \       [ 'paste', 'spell', 'gitbranch', 'readonly', 'filename' ]
 \   ],
 \   'right': [
-\       [ 'coc_errors', 'coc_warnings', 'coc_ok',  'coc_status' ],
+\       [ 'coc_ok', 'coc_errors', 'coc_warnings',  'coc_status' ],
+\       [ 'coc_hint' ],
 \       [ 'fileformat', 'fileencoding', 'filetype', 'lineinfo', 'percent' ]
 \   ]
 \ }
@@ -314,16 +259,20 @@ let g:lightline.component_expand = {
 \   'coc_warnings'  	: 'lightline#coc#warnings',
 \   'coc_errors' 	: 'lightline#coc#errors',
 \   'coc_status' 	: 'lightline#coc#status',
-\   'coc_ok' 		: 'lightline#coc#ok',
+\   'coc_ok' 		: 'CocOk',
+\   'coc_hint' 		: 'CocHint'
 \ }
 
 " Set color to the components:
 let g:lightline.component_type = {
 \   'coc_warnings' 	: 'warning',
 \   'coc_errors' 	: 'error',
-\   'coc_ok' 		: 'right',
-\   'coc_status' 	: 'right'
+\   'coc_status' 	: 'right',
+\   'coc_ok' 		: 'left',
+\   'coc_hint' 		: 'right'
 \ }
+
+
 
 let g:lightline.component_function = {
 \   'gitbranch' 	: 'fugitive#head',
@@ -333,6 +282,20 @@ let g:lightline.component_function = {
 \   'filetype' 		: 'LightlineFiletype',
 \   'filename' 		: 'LightlineFilename',
 \ }
+
+function! CocOk()
+  let hints = exists('b:coc_diagnostic_info') ? get(b:coc_diagnostic_info, 'hint', 0) : 0
+  return empty(lightline#coc#status()) && hints == 0 ? lightline#coc#ok() : ''
+endfunction
+
+function! CocHint()
+  let hints = exists('b:coc_diagnostic_info') ? get(b:coc_diagnostic_info, 'hint', 0) : 0
+  return empty(lightline#coc#status()) && hints != 0 ? 'H: ' . hints : ''
+endfunction
+
+let g:lightline#coc#indicator_ok = 'OK'
+let g:lightline#coc#indicator_errors = 'E: '
+let g:lightline#coc#indicator_warnings = 'W: '
 
 autocmd User CocStatusChange,CocDiagnosticChange call lightline#update()
 
@@ -496,6 +459,12 @@ function! _HandleSwap(filename)
     endif
 endfunc
 
+function TabName(n)
+    let buflist = tabpagebuflist(a:n)
+    let winnr = tabpagewinnr(a:n)
+    return fnamemodify(bufname(buflist[winnr - 1]), ':t')
+endfunction
+
 function! s:jumpToTab(line)
     let pair = split(a:line, ' ')
     let cmd = pair[0].'gt'
@@ -590,6 +559,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+nmap <silent> <leader>d <Plug>(coc-diagnostic-info)
+
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -668,3 +639,17 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+let g:coc_global_extensions = [
+\  'coc-omnisharp',
+\  'coc-highlight',
+\  'coc-html',
+\  'coc-dictionary',
+\  'coc-emoji',
+\  'coc-tag',
+\  'coc-pairs',
+\  'coc-java',
+\  'coc-json',
+\  'coc-rust-analyzer',
+\  'coc-yaml',
+\ ]

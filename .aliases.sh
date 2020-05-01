@@ -68,3 +68,5 @@ if command -v exa > /dev/null 2>&1; then
     alias la="exa --all --binary --group --header --long --git"
     alias l="exa --git"
 fi
+
+alias t='tmux attach'
