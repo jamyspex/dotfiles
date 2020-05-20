@@ -92,9 +92,6 @@ if exists('*minpac#init')
 	" Improvements to netrw.
     	call minpac#add('tpope/vim-vinegar')
 
-        " Generate ctags for projects.
-	call minpac#add('ludovicchabant/vim-gutentags')
-
 	"  Show Git changes in the sign column.
 	call minpac#add('mhinz/vim-signify')
 
@@ -338,7 +335,6 @@ let g:lightline.active = {
 \   ],
 \   'right': [
 \       [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok' ],
-\       [ 'gutentags' ],
 \       [ 'obsession', 'fileformat', 'fileencoding', 'filetype', 'charvaluehex', 'lineinfo',
 \         'percent' ]
 \   ]
@@ -360,7 +356,6 @@ let g:lightline.component_type = {
 
 let g:lightline.component_function = {
 \   'gitbranch': 'fugitive#head',
-\   'gutentags': 'LightlineGutentags',
 \   'obsession': 'ObsessionStatus',
 \   'readonly': 'LightlineReadonly',
 \   'fileformat': 'LightlineFileformat',
@@ -417,9 +412,6 @@ function! LightlineFileformat()
 endfunction
 function! LightlineFiletype()
     return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
-endfunction
-function! LightlineGutentags()
-    return gutentags#statusline('')
 endfunction
 function! LightlineReadonly()
     return &readonly && &filetype !=# 'help' ? 'RO' : ''
