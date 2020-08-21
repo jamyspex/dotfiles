@@ -111,8 +111,8 @@ if exists('*minpac#init')
 endif
 
 " add awesome vim colour scheme to rtp
-set runtimepath+=~/.config/nvim
 set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
+set runtimepath+=~/.config/nvim
 
 " Timeout Lengths {{{
 " ===============
