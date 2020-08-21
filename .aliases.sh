@@ -56,6 +56,8 @@ else
     }
 fi
 
+alias jupyter-notebook="~/.local/bin/jupyter-notebook --no-browser"
+
 # More ls aliases.
 alias ll='ls -alF'
 alias la='ls -A'
