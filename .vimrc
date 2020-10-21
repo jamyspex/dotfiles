@@ -146,6 +146,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   'haskell': ['stylish-haskell', 'hlint', 'brittany'],
 \   'rust': ['rustfmt'],
+\   'terraform': ['terraform'],
 \ }
 
 set nofoldenable    " disable folding
