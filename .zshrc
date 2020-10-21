@@ -157,3 +157,8 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # zprof
+export PATH="$PATH:/opt/mssql-tools/bin"
+
+export PATH=$PATH:/home/james/bin
+
+source '/home/james/lib/azure-cli/az.completion'
