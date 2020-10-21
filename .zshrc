@@ -142,7 +142,9 @@ export PATH="/usr/local/go/bin":$PATH
 export PATH="/home/james/go/bin":$PATH
 export PATH="/home/james/bin":$PATH
 export PATH="/home/james/.local/bin":$PATH
+export PATH="/home/james/Documents/JetBrains Rider-2020.2.1/bin":$PATH
 
+export NODE_ENV="development"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
