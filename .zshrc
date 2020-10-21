@@ -156,3 +156,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # zprof
 export PATH="$PATH:/opt/mssql-tools/bin"
+
+export PATH=$PATH:/home/james/bin
+
+source '/home/james/lib/azure-cli/az.completion'
