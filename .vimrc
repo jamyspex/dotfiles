@@ -7,10 +7,16 @@ if &compatible
   set nocompatible
 endif
 
+set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
+set runtimepath+=~/.config/nvim
+
+filetype off
 filetype plugin on
 syntax on
 set background=dark
 set clipboard=unnamedplus
+
+let g:polyglot_disabled = [ 'v' ]
 
 " set leader key
 let mapLeader = " "
@@ -34,6 +40,9 @@ if exists('*minpac#init')
 	" call minpac#add('google/vim-codefmt')
 	" call minpac#add('google/vim-glaive')
 	" call minpac#add('lpenz/vim-codefmt-haskell')
+
+	" install verilog syntax
+	call minpac#add('nachumk/systemverilog.vim')
 
 	" install coc
 	call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
@@ -110,9 +119,6 @@ if exists('*minpac#init')
 	" call minpac#add('racer-rust/vim-racer')
 endif
 
-" add awesome vim colour scheme to rtp
-set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
-set runtimepath+=~/.config/nvim
 
 " Timeout Lengths {{{
 " ===============
