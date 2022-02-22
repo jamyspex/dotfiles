@@ -7,6 +7,8 @@ if &compatible
   set nocompatible
 endif
 
+let g:polyglot_disabled = [ 'v' ]
+
 set runtimepath+=~/.config/nvim/pack/minpac/start/awesome-vim-colorschemes
 set runtimepath+=~/.config/nvim
 
@@ -16,7 +18,6 @@ syntax on
 set background=dark
 set clipboard=unnamedplus
 
-let g:polyglot_disabled = [ 'v' ]
 
 " set leader key
 let mapLeader = " "
@@ -46,6 +47,8 @@ if exists('*minpac#init')
 
 	" install coc
 	call minpac#add('neoclide/coc.nvim', {'branch': 'release'})
+	call minpac#add("neoclide/coc-prettier", { 'do': 'yarn install --frozen-lockfile' })
+	call minpac#add("neoclide/coc-tsserver")
 
 	" minpac must have {'type': 'opt'} so that it can be loaded with `packadd`.
 	call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -63,11 +66,11 @@ if exists('*minpac#init')
 	call minpac#add('editorconfig/editorconfig-vim')
 
 	" Statusline
-    	call minpac#add('itchyny/lightline.vim')
-    	call minpac#add('josa42/vim-lightline-coc')
+  call minpac#add('itchyny/lightline.vim')
+  call minpac#add('josa42/vim-lightline-coc')
 
 	" Switch to absolute line numbers for buffers that are not selected.
-    	call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
+  call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
 
 	" Hardtime - get learnt
 	call minpac#add('takac/vim-hardtime')
@@ -76,13 +79,13 @@ if exists('*minpac#init')
 	call minpac#add('roxma/vim-tmux-clipboard')
 
 	" Autocompletion/linting.
-    	call minpac#add('w0rp/ale')
+  call minpac#add('w0rp/ale')
 
 	" Easy navigation between vim splits and tmux panes.
-    	call minpac#add('christoomey/vim-tmux-navigator')
+  call minpac#add('christoomey/vim-tmux-navigator')
 
 	" Improvements to netrw.
-    	call minpac#add('tpope/vim-vinegar')
+  call minpac#add('tpope/vim-vinegar')
 
 	"  Show Git changes in the sign column.
 	call minpac#add('mhinz/vim-signify')
@@ -659,4 +662,5 @@ let g:coc_global_extensions = [
 \  'coc-json',
 \  'coc-rust-analyzer',
 \  'coc-yaml',
+\  'coc-tsserver'
 \ ]

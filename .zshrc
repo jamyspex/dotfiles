@@ -160,5 +160,6 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:/opt/mssql-tools/bin"
 
 export PATH=$PATH:/home/james/bin
+export PATH=$PATH:/home/james/.dotnet/tools
 
-source '/home/james/lib/azure-cli/az.completion'
+export MYVIMRC=~/.vimrc
