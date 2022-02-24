@@ -146,11 +146,13 @@ export PATH="/home/james/Documents/JetBrains Rider-2020.2.1/bin":$PATH
 
 export NODE_ENV="development"
 
+export ASPNETCORE_ENVIRONMENT="Development"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # use ripgrep by default
-export FZF_DEFAULT_COMMAND='rg --files --hidden 3>/dev/null'
-export FZF_CTRL_T_COMMAND='rg --files --hidden 2>/dev/null'
+export FZF_DEFAULT_COMMAND='rg --files 3>/dev/null'
+export FZF_CTRL_T_COMMAND='rg --files 2>/dev/null'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

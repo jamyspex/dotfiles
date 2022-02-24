@@ -36,8 +36,10 @@ if exists('*minpac#init')
 	" haskell indenter
 	call minpac#add('itchyny/vim-haskell-indent')
 
+	call minpac#add('elmcast/elm-vim')
+
 	" google code formatter
-	" call minpac#add('google/vim-maktaba')
+	call minpac#add('maksimr/vim-jsbeautify')
 	" call minpac#add('google/vim-codefmt')
 	" call minpac#add('google/vim-glaive')
 	" call minpac#add('lpenz/vim-codefmt-haskell')
