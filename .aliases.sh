@@ -29,11 +29,9 @@ if command -v fasd >/dev/null 2>&1; then
     alias v='fasd -f -e vim'
 fi
 
-if command -v nvim > /dev/null 2>&1; then
-    alias n=nvim
-    alias vi=nvim
-    alias vim=nvim
-fi
+alias n=nvim
+alias vi=nvim
+alias vim=nvim
 
 _has() {
     type $1>/dev/null 2>&1
