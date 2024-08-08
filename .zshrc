@@ -77,13 +77,11 @@ export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
 #     fi
 # fi
 
-# Aliases {{{
-# =======
-# Load our aliases.
-if [ -f ~/.aliases.sh ]; then
-    . ~/.aliases.sh
-fi
-# }}}
+# install pure prompt with brew install pure
+fpath+=('/home/linuxbrew/.linuxbrew/share/zsh/site-functions')
+
+autoload -U promptinit; promptinit
+prompt pure
 
 # fasd {{{
 # =====
@@ -114,11 +112,13 @@ if _has antibody; then
 fi
 # }}}
 
-
-fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
-
-autoload -U promptinit; promptinit
-prompt pure
+# Aliases {{{
+# =======
+# Load our aliases.
+if [[ -f ~/.aliases.sh ]]; then
+    source ~/.aliases.sh
+fi
+# }}}
 
 #export CPLUS_INCLUDE_PATH="/opt/intel/opencl/SDK/include:/opt/AMDAPPSDK-3.0/include:$CPLUS_INCLUDE_PATH"
 
@@ -163,5 +163,21 @@ export PATH="$PATH:/opt/mssql-tools/bin"
 
 export PATH=$PATH:/home/james/bin
 export PATH=$PATH:/home/james/.dotnet/tools
+export PATH=$PATH:/home/james/.cargo/bin
 
 export MYVIMRC=~/.vimrc
+
+# bun completions
+[ -s "/home/james/.bun/_bun" ] && source "/home/james/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="/home/james/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
