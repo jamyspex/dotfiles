@@ -148,7 +148,7 @@ export NODE_ENV="development"
 
 export ASPNETCORE_ENVIRONMENT="Development"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # use ripgrep by default
 export FZF_DEFAULT_COMMAND='rg --files 3>/dev/null'
