@@ -669,3 +669,22 @@ let g:coc_global_extensions = [
 \  'coc-yaml',
 \  'coc-tsserver'
 \ ]
+
+
+" Function to commit all files in the current directory
+function! AutoCommitAndPush()
+    let l:current_dir = expand('%:p:h')
+    let l:target_dir = '/home/james/streemit'
+
+    if l:current_dir =~ '^' . l:target_dir
+        silent! execute '!git add .'
+        silent! execute '!git commit -m "Auto-commit: ' . strftime('%Y-%m-%d %H:%M:%S') . '"'
+        silent! execute '!git push'
+    endif
+endfunction
+
+" Auto-command to run the function on save
+augroup AutoCommit
+    autocmd!
+    autocmd BufWritePost * call AutoCommitAndPush()
+augroup END
