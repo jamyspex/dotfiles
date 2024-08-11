@@ -33,6 +33,8 @@ if exists('*minpac#init')
 	call minpac#add('junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' })
 	call minpac#add('junegunn/fzf.vim')
 
+	call minpac#add('jesseleite/vim-agriculture')
+
 	" haskell indenter
 	call minpac#add('itchyny/vim-haskell-indent')
 
@@ -670,13 +672,24 @@ let g:coc_global_extensions = [
 \  'coc-tsserver'
 \ ]
 
+let g:auto_push_enabled = "false"
+
+command! ToggleAutoPush call FnToggleAutoPush()
+
+function! FnToggleAutoPush()
+    if g:auto_push_enabled == "true"
+	let g:auto_push_enabled = "false"
+    else
+	let g:auto_push_enabled = "true"
+    endif
+endfunction
 
 " Function to commit all files in the current directory
 function! AutoCommitAndPush()
     let l:current_dir = expand('%:p:h')
     let l:target_dir = '/home/james/streemit'
 
-    if l:current_dir =~ '^' . l:target_dir
+    if g:auto_push_enabled == "true" && l:current_dir =~ '^' . l:target_dir
         silent! execute '!git add .'
         silent! execute '!git commit -m "Auto-commit: ' . strftime('%Y-%m-%d %H:%M:%S') . '"'
         silent! execute '!git push'
