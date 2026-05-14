@@ -1,0 +1,3 @@
+# Packer regenerates this on every :PackerSync, producing iteration-order
+# churn with no semantic change. Track the source plugin list instead.
+.config/nvim/plugin/packer_compiled.lua
