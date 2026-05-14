@@ -68,11 +68,18 @@ brew install \
   zsh starship \
   neovim tree-sitter@0.25 luajit universal-ctags \
   tmux \
-  fzf fd ripgrep bat the_silver_searcher ast-grep pup \
+  fzf fd ripgrep bat the_silver_searcher ast-grep \
   yadm \
   node python@3.13 \
-  llm auth0 \
+  llm \
   zsh-async
+```
+
+A couple of formulae aren't in core and need taps:
+
+```bash
+brew tap auth0/auth0-cli && brew install auth0
+brew tap datadog-labs/pack && brew install datadog-labs/pack/pup
 ```
 
 After installing fzf via brew, run its key-binding installer (or just rely on
