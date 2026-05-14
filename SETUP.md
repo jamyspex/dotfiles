@@ -1,7 +1,10 @@
 # Dev environment setup
 
-Spec for reproducing James's terminal/shell/editor setup on a fresh machine.
-Tracked by yadm at `git@github.com:jamyspex/dotfiles.git`.
+Spec for reproducing this terminal/shell/editor setup on a fresh machine.
+Tracked by yadm at `git@github.com:jamyspex/dotfiles.git` — `yadm clone` will
+pull in `.zshrc`, `.aliases.sh`, `.tmux.conf`, the neovim Lua config under
+`.config/nvim/`, etc. This spec covers the binaries and bootstrap steps that
+yadm doesn't handle.
 
 ## Target platform
 
@@ -307,16 +310,16 @@ yadm add ~/.config/nvim/lua ~/.config/nvim/plugin/packer_compiled.lua
 (`packer_compiled.lua` is generated, so tracking it is optional — easier to
 just run `:PackerSync` after cloning.)
 
-## Things to fix up on a new machine
+## Things to watch out for on a new machine
 
-- `.zshrc` hard-codes `ZSH=/home/james/.oh-my-zsh` — change `james` to your
-  username, or rely on the `simon`/`james` branching already in the file.
-- `.gitconfig` is `james.macdonald@linespeed.systems` / `James Macdonald` —
-  replace with your own identity.
-- The `jet` treesitter parser in `lua/custom/packer.lua` points at a
-  hard-coded local path. Delete that block on a fresh clone.
-- WSL-specific clipboard binding in `.tmux.wsl.conf` only activates when
-  `/proc/version` matches `Microsoft`, so it's safe to leave on non-WSL hosts.
+- Assumes username `james` (matches `.zshrc`'s `ZSH=/home/james/.oh-my-zsh`
+  path). Create the WSL user as `james` and most paths just work.
+- The `jet` treesitter parser in `lua/custom/packer.lua` points at
+  `/home/james/streemit/jet/inlet/`. If that repo isn't cloned on the new
+  machine, comment out the `parser_config.jet` block in `init.lua` or
+  `:TSUpdate` will error.
+- `.tmux.wsl.conf` only activates when `/proc/version` matches `Microsoft`,
+  so leaving it in place on non-WSL hosts is safe.
 
 ## Quick verify checklist
 
