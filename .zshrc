@@ -129,9 +129,15 @@ export FZF_CTRL_T_COMMAND='rg --files 2>/dev/null'
 # zprof
 export PATH="$PATH:/opt/mssql-tools/bin"
 
-export PATH=$PATH:/home/james/bin 
+export PATH=$PATH:/home/james/bin
 export PATH=$PATH:/home/james/.dotnet/tools
 export PATH=$PATH:/snap/bin
+
+# .NET SDK
+export DOTNET_ROOT="$HOME/.dotnet"
+export PATH="$HOME/.dotnet:$PATH"
+
+export HUSKY=0
 
 export MYVIMRC=~/.vimrc
 
