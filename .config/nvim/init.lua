@@ -161,12 +161,14 @@ require("lualine").setup({
 })
 
 
--- Add to your init.lua
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.jet = {
-  install_info = {
-    url = "/home/james/streemit/jet/inlet/",
-    files = { "src/parser.c" },
-  },
-  filetype = "jet",
-}
+-- Register custom jet treesitter parser only on machines where the source repo is cloned.
+if vim.fn.isdirectory("/home/james/streemit/jet/inlet") == 1 then
+  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+  parser_config.jet = {
+    install_info = {
+      url = "/home/james/streemit/jet/inlet/",
+      files = { "src/parser.c" },
+    },
+    filetype = "jet",
+  }
+end
